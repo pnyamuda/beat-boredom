@@ -10,23 +10,31 @@
 		</div>
 
 		<div id="random-block" v-if="randomTask">
-			<p>Activity: {{ activity }}</p>
-			<p>Type: {{ type }}</p>
-			<p>participants:{{ participants }}</p>
-			<p v-show="price !== ''">Price: {{ price }}</p>
+			<div id="act-line">
+				<p><span class="small-heads">Activity:</span> {{ activity }}</p>
+			</div>
+			<div>
+				<p><span class="small-heads">Type:</span> {{ type }}</p>
+			</div>
+			<div>
+				<p><span class="small-heads">participants:</span> {{ participants }}</p>
+			</div>
+			<div>
+				<p><span class="small-heads">Price:</span> {{ price }}</p>
+			</div>
 
-			<button @click="getRandActivity">Get next activity</button>
+			<button v-if='selectedAct===""' id="next-btn1" @click="getRandActivity">Get next activity</button><button v-else class="next-btn2" @click="getSelectedActivity(selectedAct)">Get next activity</button>
 		</div>
 
 		<div id="search-block" v-if="searchTask">
 			<div>
-				<label>Type of activity:</label>
+				<label>Type of activity: </label>
 				<select v-model="selectedAct">
 					<option v-for="task in tasks" :key="task.id">{{task}}</option>
 				</select>
 
 			</div>
-			<button @click="getSelectedActivity(selectedAct)">Get next activity</button>
+			<button class="next-btn2" @click="getSelectedActivity(selectedAct)">Get activity</button>
 		</div>
 	</div>
 </template>
@@ -69,6 +77,8 @@
 						this.type = response.data.type;
 						this.participants = response.data.participants;
 						this.price = response.data.price;
+
+						this.selectedAct = "";
 					});
 			},
 			ranBlock() {
@@ -94,6 +104,7 @@
 						this.price = response.data.price;
 
 						this.randomTask = true;
+						this.searchTask = false;
 
 					})
 			}
@@ -115,6 +126,9 @@
 		flex-direction: row;
 		justify-content: space-evenly;
 		flex-wrap: wrap;
+		height: 8rem;
+		position: relative;
+		top: 1.5rem;
 
 	}
 
@@ -133,6 +147,67 @@
 		align-items: center;
 		border: 1px solid;
 		height: 5rem;
+		background: linear-gradient(45deg,#134E5E, #71B280);
+		color: #ffffff;
+		padding: 1rem;
+		position: relative;
+		top: 1rem;
+	}
+
+	#random-block {
+		text-align: left;
+		background: linear-gradient(45deg, #71B280,#134E5E);
+		color: #ffffff;
+		padding: 1rem;
+		width: 90%;
+		margin: auto;
+		height: 20rem;
+		font-size: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		position: relative;
+		top: 1rem;
+
+
+	}
+
+	#act-line {
+		height: 6rem;
+
+	}
+
+	#random-block div {
+		margin-bottom: -1rem;
+	}
+
+	#next-btn1 {
+		position: relative;
+		margin-top: 1.5rem;
+		border:1px solid white;
+		background-color:#310055;
+		color: #ffffff;
+		padding: 0.8rem;
+		width:8rem;
+		margin: auto;
+	}
+
+	.next-btn2 {
+		width:8rem;
+		border:1px solid white;
+		background-color:#310055;
+		color: #ffffff;
+		padding: 0.5rem;
+		margin: auto;
+		margin-top:1rem;
+	}
+	select {
+		width: 6rem;
+		height: 1.5rem;
+	}
+
+	.small-heads {
+		color:#310055;
 	}
 
 	.myButton {
@@ -149,7 +224,7 @@
 		line-height: 0px;
 		color: #FFFFFF;
 		font-family: Open Sans;
-		width:15rem;
+		width: 15rem;
 		font-size: 21px;
 		font-weight: 100;
 		padding: 20px;
