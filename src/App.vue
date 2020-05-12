@@ -1,9 +1,13 @@
 <template>
   <div id="app">
-	  <header>Beat Boring</header>
+	  <header>BeatBoredom</header>
 	<app-header></app-header>
 	  <random-task></random-task>
-
+<footer>
+	<p>BeatBoredom</p>
+	<p>&#169;2020</p>
+	
+	</footer>
     
   </div>
 </template>
@@ -24,7 +28,7 @@ export default {
 </script>
 
 <style scoped>
-	header {
+	header,footer {
 		background-color:#310055;;
 		color:#ffffff;
 		text-align: center;
@@ -34,6 +38,10 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 
+	}
+	footer {
+		position: relative;
+		top: 5rem;
 	}
 	
 

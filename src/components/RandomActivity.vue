@@ -9,33 +9,47 @@
 			</button>
 		</div>
 
-		<div id="random-block" v-if="randomTask">
-			<div id="act-line">
-				<p><span class="small-heads">Activity:</span> {{ activity }}</p>
-			</div>
-			<div>
-				<p><span class="small-heads">Type:</span> {{ type }}</p>
-			</div>
-			<div>
-				<p><span class="small-heads">participants:</span> {{ participants }}</p>
-			</div>
-			<div>
-				<p><span class="small-heads">Price:</span> {{ price }}</p>
+		<transition name="fade">
+
+			<div id="random-block" v-if="randomTask">
+				<div id="act-line">
+					<p><span class="small-heads">Activity:</span> {{ activity }}</p>
+				</div>
+				
+				<div id="other-information">
+
+					<p><span class="small-heads">Type:</span> {{ type }}</p>
+
+
+					<p><span class="small-heads">participants:</span>  {{ participants }}</p>
+
+
+					<p><span class="small-heads">Price:</span>  {{ price }}</p>
+
+
+					<button class="myButton" v-if='selectedAct===""' id="next-btn1" @click="getRandActivity">Get next activity</button><button v-else v-bind:class="{'next-btn2':true,myButton:true}" @click="getSelectedActivity(selectedAct)" id="second-random-btn">Get next activity</button>
+				</div>
 			</div>
 
-			<button v-if='selectedAct===""' id="next-btn1" @click="getRandActivity">Get next activity</button><button v-else class="next-btn2" @click="getSelectedActivity(selectedAct)">Get next activity</button>
-		</div>
+		</transition>
 
-		<div id="search-block" v-if="searchTask">
-			<div>
-				<label>Type of activity: </label>
-				<select v-model="selectedAct">
-					<option v-for="task in tasks" :key="task.id">{{task}}</option>
-				</select>
 
+
+		<transition name="fade">
+			<div id="search-block" v-if="searchTask">
+				<div>
+					<label>Type of activity: </label>
+					<select v-model="selectedAct">
+						<option v-for="task in tasks" :key="task.id">{{task}}</option>
+					</select>
+
+				</div>
+				<button id="get-act-btn" v-bind:class="{'next-btn2':true,myButton:true}" @click="getSelectedActivity(selectedAct)">Get activity</button>
 			</div>
-			<button class="next-btn2" @click="getSelectedActivity(selectedAct)">Get activity</button>
-		</div>
+
+		</transition>
+
+
 	</div>
 </template>
 
@@ -64,6 +78,7 @@
 					"busywork"
 				],
 				selectedAct: "",
+				show: true,
 			};
 		},
 
@@ -115,10 +130,19 @@
 </script>
 
 <style scoped>
-	#random-block {
-		width: 100%;
-		border: 1px solid;
+	.fade-enter-active,
+	.fade-leave-active {
+		transition: opacity .5s;
 	}
+
+	.fade-enter,
+	.fade-leave-to
+
+	/* .fade-leave-active below version 2.1.8 */
+		{
+		opacity: 0;
+	}
+
 
 	#btns-block {
 		width: 100%;
@@ -147,7 +171,7 @@
 		align-items: center;
 		border: 1px solid;
 		height: 5rem;
-		background: linear-gradient(45deg,#134E5E, #71B280);
+		background: linear-gradient(45deg, #134E5E, #71B280);
 		color: #ffffff;
 		padding: 1rem;
 		position: relative;
@@ -155,102 +179,129 @@
 	}
 
 	#random-block {
+		position: relative;
 		text-align: left;
-		background: linear-gradient(45deg, #71B280,#134E5E);
+		background: linear-gradient(45deg, #71B280, #134E5E);
 		color: #ffffff;
 		padding: 1rem;
 		width: 90%;
 		margin: auto;
-		height: 20rem;
+		min-height: 24rem;
 		font-size: 1.5rem;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-evenly;
-		position: relative;
-		top: 1rem;
+		justify-content:flex-start;
+		top: 3rem;
+		border-radius: 10px;
 
 
 	}
 
 	#act-line {
-		height: 6rem;
-
+	}
+	#other-information {
+		display:grid;
+		grid-template-rows: 20% 20 20% 20%;
+		margin-top: -1rem;
 	}
 
-	#random-block div {
-		margin-bottom: -1rem;
-	}
+	#random-block div {}
 
 	#next-btn1 {
-		position: relative;
-		margin-top: 1.5rem;
-		border:1px solid white;
-		background-color:#310055;
-		color: #ffffff;
-		padding: 0.8rem;
-		width:8rem;
 		margin: auto;
+		width: 8rem;
+		padding: 0.5rem;
+		border-radius: 0px;
 	}
 
 	.next-btn2 {
-		width:8rem;
-		border:1px solid white;
-		background-color:#310055;
-		color: #ffffff;
-		padding: 0.5rem;
 		margin: auto;
-		margin-top:1rem;
+		margin-top: 1rem;
 	}
+
+	#get-act-btn {
+		width: 6rem;
+		padding: 0.5rem;
+		border-radius: 0px;
+	}
+
+	#second-random-btn {
+		margin-top: 0rem;
+		margin: auto;
+		width: 8rem;
+		padding: 0.5rem;
+		border-radius: 0px;
+
+	}
+
 	select {
 		width: 6rem;
 		height: 1.5rem;
 	}
 
 	.small-heads {
-		color:#310055;
+		color: #310055;
+		font-weight: bold;
 	}
 
 	.myButton {
-		background: #3DF670;
-		background-image: -webkit-linear-gradient(top, #3DF670, #0B5724);
-		background-image: -moz-linear-gradient(top, #3DF670, #0B5724);
-		background-image: -ms-linear-gradient(top, #3DF670, #0B5724);
-		background-image: -o-linear-gradient(top, #3DF670, #0B5724);
-		background-image: linear-gradient(to bottom, #3DF670, #0B5724);
 		-webkit-border-radius: 20px;
 		-moz-border-radius: 20px;
 		border-radius: 20px;
-		height: 0px;
-		line-height: 0px;
 		color: #FFFFFF;
 		font-family: Open Sans;
-		width: 15rem;
-		font-size: 21px;
 		font-weight: 100;
-		padding: 20px;
-		box-shadow: 0px 4px 0px 2px #000000;
-		-webkit-box-shadow: 0px 4px 0px 2px #000000;
-		-moz-box-shadow: 0px 4px 0px 2px #000000;
-		text-shadow: 1px 1px 5px #000000;
-		border: solid #0D772A 1px;
+		height: 3rem;
+		padding: 1rem;
+		background-color: #310055;
+		box-shadow: 1px 1px 20px 0px #000000;
+		-webkit-box-shadow: 1px 1px 20px 0px #000000;
+		-moz-box-shadow: 1px 1px 20px 0px #000000;
+		text-shadow: 1px 1px 20px #000000;
+		border: solid #FFFFFF 1px;
 		text-decoration: none;
 		display: inline-block;
 		cursor: pointer;
 		text-align: center;
+		width: 12rem;
 	}
 
 	.myButton:hover {
-		border: solid #0D772A 1px;
-		background: #0B5724;
-		background-image: -webkit-linear-gradient(top, #0B5724, #3DF670);
-		background-image: -moz-linear-gradient(top, #0B5724, #3DF670);
-		background-image: -ms-linear-gradient(top, #0B5724, #3DF670);
-		background-image: -o-linear-gradient(top, #0B5724, #3DF670);
-		background-image: linear-gradient(to bottom, #0B5724, #3DF670);
+		background: #6A4281;
+		border: solid #FFFFFF 1px;
 		-webkit-border-radius: 20px;
 		-moz-border-radius: 20px;
 		border-radius: 20px;
 		text-decoration: none;
+	}
+	
+	@media (min-width:480.1px) and (max-width:768px) {
+		#random-block {
+			top: 0rem;
+		}
+		#btns-block {
+			top: 2rem;
+		}
+		#search-block {
+			top: 0rem;
+		}
+	}
+	
+	@media (min-width:768px) {
+		#random-block {
+			width: 50rem;
+			top:0rem;
+			border-radius: 0px;
+		}
+		#btns-block {
+			width: 40rem;
+			margin: auto;
+		}
+		#search-block {
+			top: 0rem;
+			width: 40rem;
+			margin: auto;
+		}
 	}
 
 </style>
