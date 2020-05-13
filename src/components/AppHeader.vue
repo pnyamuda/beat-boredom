@@ -1,6 +1,5 @@
 <template>
 	<div id="intro-block">
-		<div id="intro-background"> <img src="https://static.planetminecraft.com/files/resource_media/screenshot/1249/WALLPAPER-bored_4307916.jpg"></div>
 		<p id="intro">Are you bored? If you suffer from the same lack of enthusiasm,  beat the boredom of days at home alone!  There is a lot of activities you can do to beat the boredom.  find the things that actually engage us.<br>
 
 		</p>
@@ -32,12 +31,10 @@
 
 <style scoped>
 	#intro-block {
+		width: 100%;
+		position: relative;
 	}
 	
-	#intro-background {
-		width: 100%;
-		
-	}
 	#intro-background img {
 		width: 100%;
 	}
@@ -46,13 +43,14 @@
 		width: 100%;
 		text-align: center;
 		font-size: 1.5rem;
+		color: #ffffff;
 
 	}
 
 	#activity-intro {
-		border: 1ps solid;
-		background: linear-gradient(45deg,#134E5E, #71B280);
-		color: aliceblue;
+		border: 1px solid white;
+		position: relative;
+		background:rgba(32,32,32,0.6) ;
 		width: 95%;
 		text-align: left;
 		height: 12rem;
@@ -60,6 +58,7 @@
 		margin: auto;
 		line-height: 1.5rem;
 		border-radius: 10px;
+		color: #ffffff;
 	}
 
 	#activity-intro p {
@@ -69,16 +68,37 @@
 		#activity-intro {
 			padding-bottom:0rem;
 		}
+		#intro {
+			width:80%;
+			margin: auto;
+		}
+		#intro-block {
+			top: 2rem;
+			
+		}
+		#activity-intro {
+			top: 2rem;
+			
+		}
 		
 	}
 	@media (min-width:768px) {
 		#activity-intro {
 			padding-bottom:0rem;
-			width: 50rem;
+			width: 30rem;
 		}
 		#intro {
-			width: 60rem;
+			width:60%;
 			margin: auto;
+		}
+		#activity-intro {
+			top: 2rem;
+			
+		}
+		
+		#intro-block {
+			top: 2rem;
+			
 		}
 		
 		

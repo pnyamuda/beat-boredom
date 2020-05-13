@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="whole-random-block">
 		<div id="btns-block">
 			<button class="myButton" @click="ranBlock" v-bind:class="{randomTask}" ref="btn-random">
 				Get a random activity
@@ -12,23 +12,29 @@
 		<transition name="fade">
 
 			<div id="random-block" v-if="randomTask">
-				<div id="act-line">
-					<p><span class="small-heads">Activity:</span> {{ activity }}</p>
-				</div>
-				
+
+
 				<div id="other-information">
 
 					<p><span class="small-heads">Type:</span> {{ type }}</p>
 
-
-					<p><span class="small-heads">participants:</span>  {{ participants }}</p>
-
-
-					<p><span class="small-heads">Price:</span>  {{ price }}</p>
+					<p><span class="small-heads">Price:</span> {{ price }}</p>
 
 
-					<button class="myButton" v-if='selectedAct===""' id="next-btn1" @click="getRandActivity">Get next activity</button><button v-else v-bind:class="{'next-btn2':true,myButton:true}" @click="getSelectedActivity(selectedAct)" id="second-random-btn">Get next activity</button>
+					<p><span class="small-heads">participants:</span> {{ participants }}</p>
+
+
+
+
+
 				</div>
+
+				<div id="act-line">
+					<p><span class="small-heads">Activity:</span> {{ activity }}</p>
+
+				</div>
+
+				<button class="myButton" v-if='selectedAct===""' id="next-btn1" @click="getRandActivity">Get next activity</button><button v-else v-bind:class="{'next-btn2':true,myButton:true}" @click="getSelectedActivity(selectedAct)" id="second-random-btn">Get next activity</button>
 			</div>
 
 		</transition>
@@ -37,13 +43,17 @@
 
 		<transition name="fade">
 			<div id="search-block" v-if="searchTask">
-				<div>
-					<label>Type of activity: </label>
-					<select v-model="selectedAct">
-						<option v-for="task in tasks" :key="task.id">{{task}}</option>
-					</select>
+				
 
+
+				<div class="select" v-if="searchTask">
+					<select name="slct" id="slct" v-model="selectedAct">
+						<option selected disabled value="">Choose type of activity</option>
+						<option v-for="task in tasks" :key="task.id">{{task}}</option>
+
+					</select>
 				</div>
+
 				<button id="get-act-btn" v-bind:class="{'next-btn2':true,myButton:true}" @click="getSelectedActivity(selectedAct)">Get activity</button>
 			</div>
 
@@ -57,7 +67,7 @@
 	import axios from "axios";
 
 	export default {
-		components: {},
+		name: "RandomActivity",
 		data() {
 			return {
 				randomTask: false,
@@ -130,6 +140,67 @@
 </script>
 
 <style scoped>
+	select {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		outline: 0;
+		box-shadow: none;
+		border: 0 !important;
+		background: #2c3e50;
+		background-image: none;
+	}
+
+	/* Remove IE arrow */
+	select::-ms-expand {
+		display: none;
+	}
+
+	/* Custom Select */
+	.select {
+		position: relative;
+		display: flex;
+		width: 15rem;
+		height: 3em;
+		line-height: 3;
+		background: #2c3e50;
+		overflow: hidden;
+		border-radius: .25em;
+	}
+
+	select {
+		flex: 1;
+		padding: 0 .5em;
+		color: #fff;
+		cursor: pointer;
+	}
+
+	/* Arrow */
+	.select::after {
+		content: '\25BC';
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0 1em;
+		background: #34495e;
+		cursor: pointer;
+		pointer-events: none;
+		-webkit-transition: .25s all ease;
+		-o-transition: .25s all ease;
+		transition: .25s all ease;
+	}
+
+	/* Transition */
+	.select:hover::after {
+		color: plum;
+	}
+
+
+
+
+
+
 	.fade-enter-active,
 	.fade-leave-active {
 		transition: opacity .5s;
@@ -170,48 +241,51 @@
 		justify-content: space-evenly;
 		align-items: center;
 		border: 1px solid;
-		height: 5rem;
-		background: linear-gradient(45deg, #134E5E, #71B280);
+		height: 10rem;
+		border: 1px solid #ffffff;
+		background: rgba(32, 32, 32, 0.6);
 		color: #ffffff;
 		padding: 1rem;
 		position: relative;
-		top: 1rem;
+		top: 2rem;
 	}
 
 	#random-block {
 		position: relative;
-		text-align: left;
-		background: linear-gradient(45deg, #71B280, #134E5E);
+		text-align: start;
 		color: #ffffff;
 		padding: 1rem;
 		width: 90%;
 		margin: auto;
-		min-height: 24rem;
-		font-size: 1.5rem;
-		display: flex;
-		flex-direction: column;
-		justify-content:flex-start;
+		height: 14rem;
+		display: grid;
+		grid-template-rows: 30% 40% 30%;
+		background: rgba(32, 32, 32, 0.6);
+		border: 1px solid #ffffff;
 		top: 3rem;
 		border-radius: 10px;
 
 
 	}
 
-	#act-line {
-	}
+	#act-line {}
+
 	#other-information {
-		display:grid;
-		grid-template-rows: 20% 20 20% 20%;
-		margin-top: -1rem;
+		display: grid;
+		grid-template-columns: 60% 40%;
+		grid-template-rows: 50% 50%;
+		grid-row-gap: 1%;
+		margin-top: 0rem;
 	}
 
 	#random-block div {}
 
 	#next-btn1 {
 		margin: auto;
-		width: 8rem;
-		padding: 0.5rem;
+		width: 7rem;
+		padding: 0.1rem;
 		border-radius: 0px;
+		margin-top: 0rem;
 	}
 
 	.next-btn2 {
@@ -223,25 +297,24 @@
 		width: 6rem;
 		padding: 0.5rem;
 		border-radius: 0px;
+		margin-top: 1rem;
+
 	}
 
 	#second-random-btn {
-		margin-top: 0rem;
+		margin-top: -1rem;
 		margin: auto;
-		width: 8rem;
-		padding: 0.5rem;
+		width: 7rem;
+		padding: 0.1rem;
 		border-radius: 0px;
 
 	}
 
-	select {
-		width: 6rem;
-		height: 1.5rem;
-	}
+	select {}
 
 	.small-heads {
-		color: #310055;
 		font-weight: bold;
+		color: plum;
 	}
 
 	.myButton {
@@ -264,6 +337,7 @@
 		cursor: pointer;
 		text-align: center;
 		width: 12rem;
+		transition: all 0.5s ease-in-out;
 	}
 
 	.myButton:hover {
@@ -274,34 +348,45 @@
 		border-radius: 20px;
 		text-decoration: none;
 	}
-	
+
 	@media (min-width:480.1px) and (max-width:768px) {
 		#random-block {
 			top: 0rem;
 		}
+
 		#btns-block {
 			top: 2rem;
 		}
+
 		#search-block {
 			top: 0rem;
 		}
+		#whole-random-block {
+			margin-top: 5rem;
+		}
 	}
-	
+
 	@media (min-width:768px) {
 		#random-block {
 			width: 50rem;
-			top:0rem;
+			top: 0rem;
 			border-radius: 0px;
 		}
+
 		#btns-block {
 			width: 40rem;
 			margin: auto;
 		}
+
 		#search-block {
 			top: 0rem;
 			width: 40rem;
 			margin: auto;
 		}
+		#whole-random-block {
+			margin-top: 5rem;
+		}
+		
 	}
 
 </style>
