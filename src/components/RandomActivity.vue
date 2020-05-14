@@ -43,7 +43,7 @@
 
 		<transition name="fade">
 			<div id="search-block" v-if="searchTask">
-				
+
 
 
 				<div class="select" v-if="searchTask">
@@ -107,15 +107,19 @@
 					});
 			},
 			ranBlock() {
-				this.randomTask = true;
 				this.searchTask = false;
+				setTimeout(() => {
+					this.randomTask = true;
 
-				this.getRandActivity()
+					this.getRandActivity()
 
+				}, 500)
 			},
 			searchBlock() {
-				this.searchTask = true;
 				this.randomTask = false;
+				setTimeout(() => {
+					this.searchTask = true;
+				}, 500)
 
 			},
 			getSelectedActivity(type) {
@@ -128,8 +132,13 @@
 						this.participants = response.data.participants;
 						this.price = response.data.price;
 
-						this.randomTask = true;
+
 						this.searchTask = false;
+
+						setTimeout(() => {
+							this.randomTask = true;
+						}, 500)
+
 
 					})
 			}
@@ -161,7 +170,7 @@
 	.select {
 		position: relative;
 		display: flex;
-		width: 15rem;
+		width: 13rem;
 		height: 3em;
 		line-height: 3;
 		background: #2c3e50;
@@ -195,8 +204,6 @@
 	.select:hover::after {
 		color: plum;
 	}
-
-
 
 
 
@@ -248,6 +255,8 @@
 		padding: 1rem;
 		position: relative;
 		top: 2rem;
+		width: 80%;
+		margin: auto;
 	}
 
 	#random-block {
@@ -262,7 +271,7 @@
 		grid-template-rows: 30% 40% 30%;
 		background: rgba(32, 32, 32, 0.6);
 		border: 1px solid #ffffff;
-		top: 3rem;
+		top: 2rem;
 		border-radius: 10px;
 
 
@@ -361,16 +370,23 @@
 		#search-block {
 			top: 0rem;
 		}
+
 		#whole-random-block {
 			margin-top: 5rem;
 		}
 	}
 
 	@media (min-width:768px) {
+		.select {
+			width: 15rem;
+		}
 		#random-block {
-			width: 50rem;
+			width: 35rem;
 			top: 0rem;
 			border-radius: 0px;
+		}
+		#other-information {
+			grid-template-columns: 33% 33% 33%;
 		}
 
 		#btns-block {
@@ -380,13 +396,15 @@
 
 		#search-block {
 			top: 0rem;
-			width: 40rem;
+			width: 20rem;
 			margin: auto;
+			height: 8rem;
 		}
+
 		#whole-random-block {
 			margin-top: 5rem;
 		}
-		
+
 	}
 
 </style>

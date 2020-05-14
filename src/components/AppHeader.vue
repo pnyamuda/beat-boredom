@@ -1,6 +1,6 @@
 <template>
 	<div id="intro-block">
-		<p id="intro">Are you bored? If you suffer from the same lack of enthusiasm,  beat the boredom of days at home alone!  There is a lot of activities you can do to beat the boredom.  find the things that actually engage us.<br>
+		<p id="intro">From education, board games, cooking and self care to indoor gardening and organizing, here you can find a vast amount of exciting activities depending on your mood that will keep you entertained no matter how long you're stuck inside. If you're bored, then you can beat the BOREDOM and find the things that will actually engage you. Enjoy!
 
 		</p>
 
@@ -34,23 +34,21 @@
 		width: 100%;
 		position: relative;
 	}
-	
-	#intro-background img {
-		width: 100%;
-	}
+
 
 	#intro {
 		width: 100%;
 		text-align: center;
 		font-size: 1.5rem;
 		color: #ffffff;
+		
 
 	}
 
 	#activity-intro {
 		border: 1px solid white;
 		position: relative;
-		background:rgba(32,32,32,0.6) ;
+		background: rgba(32, 32, 32, 0.6);
 		width: 95%;
 		text-align: left;
 		height: 12rem;
@@ -64,44 +62,51 @@
 	#activity-intro p {
 		text-align: center;
 	}
+
 	@media (min-width:480.1px) and (max-width:768px) {
 		#activity-intro {
-			padding-bottom:0rem;
+			padding-bottom: 0rem;
 		}
+
 		#intro {
-			width:80%;
+			width: 80%;
 			margin: auto;
 		}
+
 		#intro-block {
 			top: 2rem;
-			
+
 		}
+
 		#activity-intro {
 			top: 2rem;
-			
+
 		}
-		
+
 	}
+
 	@media (min-width:768px) {
 		#activity-intro {
-			padding-bottom:0rem;
+			padding-bottom: 0rem;
 			width: 30rem;
 		}
+
 		#intro {
-			width:60%;
+			width: 75%;
 			margin: auto;
 		}
+
 		#activity-intro {
 			top: 2rem;
-			
+
 		}
-		
+
 		#intro-block {
 			top: 2rem;
-			
+
 		}
-		
-		
+
+
 	}
 
 </style>
