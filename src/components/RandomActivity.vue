@@ -124,7 +124,7 @@
 			},
 			getSelectedActivity(type) {
 				axios
-					.get("http://www.boredapi.com/api/activity?type=" + type)
+					.get("https://www.boredapi.com/api/activity?type=" + type)
 					.then(response => {
 						console.log("get select fired")
 						this.activity = response.data.activity;
