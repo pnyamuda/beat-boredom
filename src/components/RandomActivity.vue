@@ -291,7 +291,7 @@
 
 	#next-btn1 {
 		margin: auto;
-		width: 7rem;
+		width: 11rem;
 		padding: 0.1rem;
 		border-radius: 0px;
 		margin-top: 0rem;
@@ -311,11 +311,12 @@
 	}
 
 	#second-random-btn {
-		margin-top: -1rem;
 		margin: auto;
-		width: 7rem;
+		width: 8rem;
 		padding: 0.1rem;
 		border-radius: 0px;
+		margin-top:0rem;
+		border-radius: 10px;
 
 	}
 
@@ -331,7 +332,6 @@
 		-moz-border-radius: 20px;
 		border-radius: 20px;
 		color: #FFFFFF;
-		font-family: Open Sans;
 		font-weight: 100;
 		height: 3rem;
 		padding: 1rem;

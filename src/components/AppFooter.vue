@@ -39,7 +39,13 @@
 		flex-direction: column;
 		justify-content: center;
 		position: absolute;
-		top: 75rem;
+		top: 77rem;
+		
+	}
+	@media (max-width:319px) {
+		footer {
+			top: 82rem;
+		}
 		
 	}
 

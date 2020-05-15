@@ -1,6 +1,6 @@
 <template>
 	<div id="intro-block">
-		<p id="intro">From education, board games, cooking and self care to indoor gardening and organizing, here you can find a vast amount of exciting activities depending on your mood that will keep you entertained no matter how long you're stuck inside. If you're bored, then you can beat the BOREDOM and find the things that will actually engage you. Enjoy!
+		<p id="intro">From education, board games, cooking and self care to indoor gardening and organizing, here you can find a vast amount of exciting activities depending on your mood that will keep you entertained. If you're bored, then you can beat the BOREDOM and find the things that will actually engage you. Enjoy!
 
 		</p>
 
@@ -41,6 +41,8 @@
 		text-align: center;
 		font-size: 1.5rem;
 		color: #ffffff;
+		background-color: rgba(32, 32, 32, 0.4);
+		padding: 1rem;
 		
 
 	}
