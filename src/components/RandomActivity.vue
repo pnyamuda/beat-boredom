@@ -95,7 +95,7 @@
 		methods: {
 			getRandActivity() {
 				axios
-					.get("http://www.boredapi.com/api/activity/")
+					.get("https://www.boredapi.com/api/activity/")
 					.then(response => {
 						console.log("rand function fired");
 						this.activity = response.data.activity;
