@@ -7,9 +7,9 @@
 		<div id="activity-intro">
 			<p>Each activity gives you the following information:</p>
 			<ul>
-				<li>type: Type of the activity</li>
-				<li>participants: The number of people that this activity could involve</li>
-				<li>price:A factor describing the cost of the event with zero being free - [0, 1]</li>
+				<li>type: Type of the activity.</li>
+				<li>participants: The number of people that this activity could involve.</li>
+				<li>price:A factor describing the cost of the event with zero being free [0, 1].</li>
 
 
 			</ul>
